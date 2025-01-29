@@ -1,0 +1,15 @@
+C:\Users\Coralie\Documents\2025_Hiver\Développement avancé avec des moteurs de jeu\TP1\TP1_Tooling_Coralie_Tremblay\TP1_Toolong_CT\TP1_Toolong_CT\obj\Debug\net8.0\TP1_Toolong_CT.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Coralie\Documents\2025_Hiver\Développement avancé avec des moteurs de jeu\TP1\TP1_Tooling_Coralie_Tremblay\TP1_Toolong_CT\TP1_Toolong_CT\obj\Debug\net8.0\TP1_Toolong_CT.AssemblyInfoInputs.cache
+C:\Users\Coralie\Documents\2025_Hiver\Développement avancé avec des moteurs de jeu\TP1\TP1_Tooling_Coralie_Tremblay\TP1_Toolong_CT\TP1_Toolong_CT\obj\Debug\net8.0\TP1_Toolong_CT.AssemblyInfo.cs
+C:\Users\Coralie\Documents\2025_Hiver\Développement avancé avec des moteurs de jeu\TP1\TP1_Tooling_Coralie_Tremblay\TP1_Toolong_CT\TP1_Toolong_CT\obj\Debug\net8.0\TP1_Toolong_CT.csproj.CoreCompileInputs.cache
+C:\Users\Coralie\Documents\2025_Hiver\Développement avancé avec des moteurs de jeu\TP1\TP1_Tooling_Coralie_Tremblay\TP1_Toolong_CT\TP1_Toolong_CT\obj\Debug\net8.0\TP1_Toolong_CT.sourcelink.json
+C:\Users\Coralie\Documents\2025_Hiver\Développement avancé avec des moteurs de jeu\TP1\TP1_Tooling_Coralie_Tremblay\TP1_Toolong_CT\TP1_Toolong_CT\bin\Debug\net8.0\TP1_Toolong_CT.exe
+C:\Users\Coralie\Documents\2025_Hiver\Développement avancé avec des moteurs de jeu\TP1\TP1_Tooling_Coralie_Tremblay\TP1_Toolong_CT\TP1_Toolong_CT\bin\Debug\net8.0\TP1_Toolong_CT.deps.json
+C:\Users\Coralie\Documents\2025_Hiver\Développement avancé avec des moteurs de jeu\TP1\TP1_Tooling_Coralie_Tremblay\TP1_Toolong_CT\TP1_Toolong_CT\bin\Debug\net8.0\TP1_Toolong_CT.runtimeconfig.json
+C:\Users\Coralie\Documents\2025_Hiver\Développement avancé avec des moteurs de jeu\TP1\TP1_Tooling_Coralie_Tremblay\TP1_Toolong_CT\TP1_Toolong_CT\bin\Debug\net8.0\TP1_Toolong_CT.dll
+C:\Users\Coralie\Documents\2025_Hiver\Développement avancé avec des moteurs de jeu\TP1\TP1_Tooling_Coralie_Tremblay\TP1_Toolong_CT\TP1_Toolong_CT\bin\Debug\net8.0\TP1_Toolong_CT.pdb
+C:\Users\Coralie\Documents\2025_Hiver\Développement avancé avec des moteurs de jeu\TP1\TP1_Tooling_Coralie_Tremblay\TP1_Toolong_CT\TP1_Toolong_CT\obj\Debug\net8.0\TP1_Toolong_CT.dll
+C:\Users\Coralie\Documents\2025_Hiver\Développement avancé avec des moteurs de jeu\TP1\TP1_Tooling_Coralie_Tremblay\TP1_Toolong_CT\TP1_Toolong_CT\obj\Debug\net8.0\refint\TP1_Toolong_CT.dll
+C:\Users\Coralie\Documents\2025_Hiver\Développement avancé avec des moteurs de jeu\TP1\TP1_Tooling_Coralie_Tremblay\TP1_Toolong_CT\TP1_Toolong_CT\obj\Debug\net8.0\TP1_Toolong_CT.pdb
+C:\Users\Coralie\Documents\2025_Hiver\Développement avancé avec des moteurs de jeu\TP1\TP1_Tooling_Coralie_Tremblay\TP1_Toolong_CT\TP1_Toolong_CT\obj\Debug\net8.0\TP1_Toolong_CT.genruntimeconfig.cache
+C:\Users\Coralie\Documents\2025_Hiver\Développement avancé avec des moteurs de jeu\TP1\TP1_Tooling_Coralie_Tremblay\TP1_Toolong_CT\TP1_Toolong_CT\obj\Debug\net8.0\ref\TP1_Toolong_CT.dll

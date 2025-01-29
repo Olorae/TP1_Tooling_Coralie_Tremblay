@@ -1,0 +1,13 @@
+is_global = true
+build_property.TargetFramework = net8.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = 
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = TP1_Toolong_CT
+build_property.ProjectDir = C:\Users\Coralie\Documents\2025_Hiver\Développement avancé avec des moteurs de jeu\TP1\TP1_Tooling_Coralie_Tremblay\TP1_Toolong_CT\TP1_Toolong_CT\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
