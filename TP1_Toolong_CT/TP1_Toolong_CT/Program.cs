@@ -15,50 +15,34 @@ using System.Diagnostics;
 
 namespace HelloWorld
 {
-
     class Program
     {
         static void Main(string[] args)
         {
             // Variables
-            string projectPath = args[0]; // Mettre entre guillements
-            string projectCommand = args[1];
             EngineConfig engineConfig = new EngineConfig();
-            Process UBTProcess = new Process();
+            string batPath = "C:\\Program Files\\Epic Games\\UE_5.4\\Engine\\Build\\BatchFiles\\Build.bat";
+            string projectPath = args[0];
+            string projectCommand = args[1];
+            string projectPackagePath = "";
             string gameName;
-            
-            // Show JSON
-            string readText = File.ReadAllText(projectPath);
-            //Console.WriteLine(readText);
-            //var parsedData = int.Parse(File.ReadAllText(projectPath)).parse(data);
 
             using (StreamReader r = new StreamReader(projectPath))
             {
                 string json = r.ReadToEnd();
-
-                //Console.WriteLine(r);
                 engineConfig = JsonSerializer.Deserialize<EngineConfig>(json)!;
                 gameName = (engineConfig.Modules[0]).Name;
             }
 
             switch (projectCommand)
             {
+                // Affichage (nom de jeu, version de Unreal utilisee, plugins utilises)
+                // TODO : ( Marquer « From Source » si cela est le cas )
                 case "show-infos":
-                    /*
-                     Afficher le nom du jeu
-                     Afficher la version de Unreal utilisée ( Marquer « From Source » si cela est le cas )
-                     Afficher les plugins utilisés
-                     */
-                    /*
-                    foreach (Plugin plugin in engineConfig.Plugins)
-                    {
-                        Console.WriteLine("GameName = " + plugin.Name);
-                    }
-                    */
                     
                     Console.WriteLine("GameName = " + gameName);
                     Console.WriteLine("Unreal used Version = " + engineConfig.FileVersion.ToString());
-                    Console.Write("Plugins :" );
+                    Console.Write("Plugins :");
                     foreach (Plugin plugin in engineConfig.Plugins)
                     {
                         Console.Write("\t { Name = " + plugin.Name);
@@ -68,18 +52,19 @@ namespace HelloWorld
                         {
                             Console.Write(item + ", ");
                         }
+
                         Console.WriteLine(" } }");
                     }
-                    
+
                     break;
                 case "build":
-                    
+
                     ProcessStartInfo startInfo = new ProcessStartInfo
                     {
-                        FileName = "C:\\Program Files\\Epic Games\\UE_5.4\\Engine\\Build\\BatchFiles\\Build.bat",
+                        FileName = batPath,
                         Arguments = $"{gameName} {"Win64"} {"Development"} {"\"" + projectPath + "\""} -waitmutex",
-                        UseShellExecute = true,
-                        RedirectStandardOutput = false,
+                        //UseShellExecute = true,
+                        //RedirectStandardOutput = false,
                     };
 
                     try
@@ -92,38 +77,38 @@ namespace HelloWorld
                     {
                         Console.WriteLine("Building Process Error");
                     }
+
                     break;
+                // TODO : Resolve : "No platforms specified for target"
                 case "package":
-                    /*
-                    Comment bien utiliser UAT ? Les paramètres sont très compliqués
-o Vous allez vous servir du Project Launcher de Unreal Engine
-o Dans votre éditeur : Tools -> Project Launcher
-o Ajoutez un Custom Launch Profile (gros bouton Add en bas)
-§ Section Project
-• Vérifier que c’est le bon Project
-§ Section Build
-• Choisissez Build au lieu de Detect Automatically
-§ Section Cook
-• Choisissez By the book au lieu de On the fly
-• Choisissez votre plateforme (Windows ou Mac)
-• Choisissez vos Maps
-§ Section Package
-• Choisissez Package and store locally au lieu de Do Not
-Package
-§ Section Deploy
-• Choisissez Do not deploy au lieu de Copy to device
-o Revenez dans le menu précédent (en appuyant sur le bouton Back en haut)
-o Clic droit sur votre profile -> Rename
-§ Donnez-lui un nom intéressant
-o Un bouton « Launch this profile » devrait être là (sinon corrigez votre
-configuration)
-o Appuyez dessus
-o Une nouvelle fenêtre devrait se lancer
-§ Dans l’Output Log de cette fenêtre, tout en haut, cherchez Parsing
-Command Line :
-§ Ce qui suit est la command-line à passer à UAT pour votre packaging
-process
-                    */
+
+                    //projectPackagePath = args[2];
+                    ProcessStartInfo starInfo = new ProcessStartInfo
+                    {
+                        FileName = batPath,
+                        Arguments = "-ScriptsForProject=\"C:/../../../Users/Coralie/Documents/2024_Automne/Intelligence artificielle pour le jeu video/TP1/TP1_3/TP1_3.uproject\" BuildCookRun -project=\"C:/../../../Users/Coralie/Documents/2024_Automne/Intelligence artificielle pour le jeu video/TP1/TP1_3/TP1_3.uproject\" -noP4 -clientconfig=Development -serverconfig=Development -nocompile -nocompileeditor -installed -unrealexe=\"C:\\Program Files\\Epic Games\\UE_5.4\\Engine\\Binaries\\Win64\\UnrealEditor-Cmd.exe\" -utf8output -platform=Win64 -build -cook -map=level_TP1+menu_TP1 -CookCultures=en -unversionedcookedcontent -stage -package -cmdline=\" -Messaging\" -addcmdline=\"-SessionId=30E39E4344ADEB1D070C1CBA6845C04A -SessionOwner='Coralie' -SessionName='UAT_SuperProfil' \"",
+                        RedirectStandardOutput = true,
+                        RedirectStandardError = true,
+                        UseShellExecute = false,
+                        CreateNoWindow = true
+                    };
+
+                    try
+                    {
+                        Process process = new Process { StartInfo = starInfo };
+                        process.OutputDataReceived += (sender, e) => Console.WriteLine(e.Data);
+                        process.ErrorDataReceived += (sender, e) => Console.WriteLine($"ERROR: {e.Data}");
+
+                        process.Start();
+                        process.BeginOutputReadLine();
+                        process.BeginErrorReadLine();
+                        process.WaitForExit();
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("Building Process Error");
+                    }
+
                     break;
                 default:
                     // code block
@@ -135,3 +120,8 @@ process
 
 //TP1_Toolong_CT.exe "C:\Users\Coralie\Documents\2024_Automne\Intelligence artificielle pour le jeu video\TP1\TP1_3\TP1_3.uproject" build
 //TP1_Toolong_CT.exe "C:\Users\Coralie\Documents\2025_Hiver\Prototypage de jeux avec un langage de script\EchoBlade\EchoBlade.uproject" build
+
+//TP1_Toolong_CT.exe "C:\Users\Coralie\Documents\2024_Automne\Intelligence artificielle pour le jeu video\TP1\TP1_3\TP1_3.uproject" package
+//"C:\Program Files\Epic Games\UE_5.4\Engine\Binaries\Win64\UnrealEditor-Cmd.exe" "C:/Users/Coralie/Documents/2024_Automne/Intelligence artificielle pour le jeu video/TP1/TP1_3/TP1_3.uproject" -run=Cook -targetplatform=Windows -unattended
+
+//Parsing command line: -ScriptsForProject="C:/../../../Users/Coralie/Documents/2024_Automne/Intelligence artificielle pour le jeu video/TP1/TP1_3/TP1_3.uproject" BuildCookRun -project="C:/../../../Users/Coralie/Documents/2024_Automne/Intelligence artificielle pour le jeu video/TP1/TP1_3/TP1_3.uproject" -noP4 -clientconfig=Development -serverconfig=Development -nocompile -nocompileeditor -installed -unrealexe="C:\Program Files\Epic Games\UE_5.4\Engine\Binaries\Win64\UnrealEditor-Cmd.exe" -utf8output -platform=Win64 -build -cook -map=level_TP1+menu_TP1 -CookCultures=en -unversionedcookedcontent -stage -package -cmdline=" -Messaging" -addcmdline="-SessionId=30E39E4344ADEB1D070C1CBA6845C04A -SessionOwner='Coralie' -SessionName='UAT_SuperProfil' "
