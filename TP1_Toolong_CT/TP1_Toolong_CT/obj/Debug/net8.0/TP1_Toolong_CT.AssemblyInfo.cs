@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TP1_Toolong_CT")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+881b252b97a3e5f4e2abcbc7b6e0757ee714cfe2")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5b4961792108b3fc2f3e2715f6de106b9e5151d7")]
 [assembly: System.Reflection.AssemblyProductAttribute("TP1_Toolong_CT")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TP1_Toolong_CT")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

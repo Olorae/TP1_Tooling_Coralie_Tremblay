@@ -11,7 +11,7 @@ public class EngineConfig
     public string EngineAssociation { get; set; }
     public string Category { get; set; }
     public string Description { get; set; }
-    public IList<Module> Modules { get; set; }
+    public IList<Module>? Modules { get; set; }
     public IList<Plugin> Plugins { get; set; }
 }
 
