@@ -11,10 +11,11 @@ internal class Program
     {
         // Variables
         var engineConfig = new EngineConfig();
-        var batPath = "D:\\UnrealEngine\\Engine\\Build\\BatchFiles\\RunUAT.bat"; //".\\Engine\\Build\\BatchFiles\\RunUAT.bat";
+        const string batPath = ".\\Engine\\Build\\BatchFiles\\RunUAT.bat"; //"D:\\UnrealEngine\\Engine\\Build\\BatchFiles\\RunUAT.bat";
         var projectPath = args[0];
         var projectCommand = args[1];
         var projectPackagePath = "";
+        var parsingCommandLine = "";
         string gameName;
 
         using (var r = new StreamReader(projectPath))
@@ -61,9 +62,9 @@ internal class Program
                 try
                 {
                     var process = Process.Start(startInfo);
-                    process.WaitForExit();
                     process.OutputDataReceived += (sender, e) => Console.WriteLine(e.Data);
                     process.ErrorDataReceived += (sender, e) => Console.WriteLine($"ERROR: {e.Data}");
+                    process.WaitForExit();
 
                     Console.WriteLine("Process completed successfully");
                 }
@@ -73,16 +74,19 @@ internal class Program
                 }
 
                 break;
-            // TODO : Resolve : "No platforms specified for target"
             case "package":
 
                 projectPackagePath = args[2];
-                // projectPackagePath = "-ScriptsForProject=\"" + projectPath + "\" BuildCookRun -project=\"" + projectPath + "\" -noP4 -clientconfig=Development -serverconfig=Development -nocompile -nocompileeditor -installed -unrealexe=\"C:\\Program Files\\Epic Games\\UE_5.4\\Engine\\Binaries\\Win64\\UnrealEditor-Cmd.exe\" -utf8output -platform=Win64 -build -cook -map=level_TP1+menu_TP1 -CookCultures=en -unversionedcookedcontent -stage -package -cmdline=\" -Messaging\" -addcmdline=\"-SessionId=30E39E4344ADEB1D070C1CBA6845C04A -SessionOwner='Coralie' -SessionName='UAT_SuperProfil'";
+                
+                parsingCommandLine = "-ScriptsForProject=\"" + projectPath + "\" BuildCookRun -project=\"" + projectPath + "\" -noP4 -clientconfig=Development -serverconfig=Development -nocompile -nocompileeditor" +
+                                     "-installed -unrealexe=\".\\Engine\\Binaries\\Win64\\UnrealEditor-Cmd.exe\" -utf8output -platform=Win64 -build -cook -map=level_TP1+menu_TP1 -CookCultures=en" +
+                                     "-unversionedcookedcontent -stage -package -stagingdirectory=\"" + projectPackagePath + "\" -cmdline=\" -Messaging\" -addcmdline=\"-SessionId=30E39E4344ADEB1D070C1CBA6845C04A" +
+                                     "-SessionOwner='Coralie' -SessionName='UAT_SuperProfil'";
                 
                 var starInfo = new ProcessStartInfo
                 {
                     FileName = batPath,
-                    Arguments = projectPackagePath,
+                    Arguments = parsingCommandLine,
                     RedirectStandardOutput = true,
                     RedirectStandardError = true,
                     UseShellExecute = false,
@@ -100,7 +104,7 @@ internal class Program
                     process.BeginErrorReadLine();
                     process.WaitForExit();
                 }
-                catch (Exception ex)
+                catch (Exception e)
                 {
                     Console.WriteLine("Packaging Process Error");
                 }
@@ -109,12 +113,5 @@ internal class Program
         }
     }
 }
-
-//TP1_Toolong_CT.exe "C:\Users\Coralie\Documents\2024_Automne\Intelligence artificielle pour le jeu video\TP1\TP1_3\TP1_3.uproject" build
-//TP1_Toolong_CT.exe "C:\Users\Coralie\Documents\2024_Automne\Intelligence artificielle pour le jeu video\TP1\TP1_3\TP1_3.uproject" package
-
-
-//"C:\Program Files\Epic Games\UE_5.4\Engine\Binaries\Win64\UnrealEditor-Cmd.exe" "C:/Users/Coralie/Documents/2024_Automne/Intelligence artificielle pour le jeu video/TP1/TP1_3/TP1_3.uproject" -run=Cook -targetplatform=Windows -unattended
-
 
 //Parsing command line: -ScriptsForProject="C:/../../../Users/Coralie/Documents/2024_Automne/Intelligence artificielle pour le jeu video/TP1/TP1_3/TP1_3.uproject" BuildCookRun -project="C:/../../../Users/Coralie/Documents/2024_Automne/Intelligence artificielle pour le jeu video/TP1/TP1_3/TP1_3.uproject" -noP4 -clientconfig=Development -serverconfig=Development -nocompile -nocompileeditor -installed -unrealexe="C:\Program Files\Epic Games\UE_5.4\Engine\Binaries\Win64\UnrealEditor-Cmd.exe" -utf8output -platform=Win64 -build -cook -map=level_TP1+menu_TP1 -CookCultures=en -unversionedcookedcontent -stage -package -cmdline=" -Messaging" -addcmdline="-SessionId=30E39E4344ADEB1D070C1CBA6845C04A -SessionOwner='Coralie' -SessionName='UAT_SuperProfil' "
